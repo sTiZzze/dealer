@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'src.dealership.apps.DealershipConfig',
+    'src.provider.apps.ProviderConfig',
     'rest_framework',
+    'djmoney',
+
 ]
 
 MIDDLEWARE = [
