@@ -2,14 +2,14 @@ from django.db import models
 from djmoney.models.fields import MoneyField
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 
-from src.addition.abstract_model import UpdatedAt, Delete
+from src.addition.abstract_model import CreatedAt, UpdatedAt, Delete
 from src.core.enums.ProviderEnum import Color
 
 
-class Car(UpdatedAt, Delete):
+class Car(CreatedAt, UpdatedAt, Delete):
     model = models.TextField(max_length=50)
     description = models.TextField(blank=True, max_length=200)
-    color = models.CharField(choices=Color.choices, default=Color.BLACK)
+    color = models.CharField(choices=Color.choices(), default=Color.BLACK, max_length=6)
     price = MoneyField(decimal_places=2, default_currency='USD', max_digits=10)
     engine_volume = models.IntegerField(
         validators=[
@@ -32,7 +32,7 @@ class Car(UpdatedAt, Delete):
         return self.name
 
 
-class Provider(UpdatedAt, Delete):
+class Provider(CreatedAt, UpdatedAt, Delete):
     name = models.CharField(max_length=40)
     description = models.CharField(blank=True, max_length=200)
     list_cars = models.ManyToManyField(Car, through='EditorCar')
@@ -43,13 +43,13 @@ class Provider(UpdatedAt, Delete):
 
 
 class EditorCar(UpdatedAt, Delete):
-    car = models.ForeignKey(Car, to_field='number_of_car', on_delete=models.SET_NULL, related_name='buy_car', null=True)
+    car = models.ForeignKey(Car, to_field='vin_number', on_delete=models.SET_NULL, related_name='buy_car', null=True)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name='provider')
     is_sale = models.BooleanField(default=False)
 
 
-class ProviderSale(UpdatedAt, Delete):
-    car = models.ForeignKey(Car, to_field='number_of_car', on_delete=models.SET_NULL, related_name='car_sale', null=True)
+class ProviderSale(CreatedAt, UpdatedAt, Delete):
+    car = models.ForeignKey(Car, to_field='vin_number', on_delete=models.SET_NULL, related_name='car_sale', null=True)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name='provider_sale')
     sale = models.IntegerField(
         default=0,
