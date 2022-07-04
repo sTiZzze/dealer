@@ -1,3 +1,30 @@
-from django.shortcuts import render
 
-# Create your views here.
+from rest_framework import mixins
+from rest_framework.viewsets import GenericViewSet
+
+from src.dealership.serializers import LocationSerializer, DealershipSerializer
+from src.dealership.models import Location, Dealership
+
+
+class LocationView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
+
+    serializer_class = LocationSerializer
+    queryset = Location.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class DealershipView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
+
+    serializer_class = DealershipSerializer
+    queryset = Dealership.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

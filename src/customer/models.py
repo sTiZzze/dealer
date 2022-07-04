@@ -39,7 +39,7 @@ class Customer(CreatedAt, UpdatedAt, Delete):
 
 class Buy(CreatedAt, UpdatedAt, Delete):
     count = models.PositiveIntegerField(default=1)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     car = models.ForeignKey(Car, to_field='vin_number', on_delete=models.SET_NULL,
                             related_name='cars',
                             null=True, blank=True)
