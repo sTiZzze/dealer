@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from djmoney.forms import MoneyField
+from djmoney.models.fields import MoneyField
 
 from src.provider.models import Car, Provider
 from src.addition.abstract_model import CreatedAt, UpdatedAt, Delete
@@ -18,7 +18,7 @@ class Dealership(CreatedAt, UpdatedAt, Delete):
     name = models.TextField(max_length=50)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='location')
     description = models.TextField(blank=True)
-    balance = MoneyField(decimal_places=2, default_currency='USD', max_digits=10)
+    balance = MoneyField(decimal_places=2, default_currency='USD', max_digits=100)
     cars = models.ManyToManyField(Car, through='ProviderCars')
 
     def __str__(self):
@@ -26,6 +26,7 @@ class Dealership(CreatedAt, UpdatedAt, Delete):
 
 
 class ProviderCars(CreatedAt, UpdatedAt, Delete):
+    count = models.PositiveIntegerField(default=1)
     dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE, related_name='dealerships',
                                    null=True, blank=True)
     cars = models.ForeignKey(Car, to_field='vin_number', on_delete=models.SET_NULL, related_name='cars_of_dealership',

@@ -36,6 +36,7 @@ tzdata = "==2022.1"
 vine = "==5.0.0"
 wcwidth = "==0.2.5"
 wrapt = "==1.14.1"
+django-filter = "*"
 
 [requires]
 python_version = "3.10"
