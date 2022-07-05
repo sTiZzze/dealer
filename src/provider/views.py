@@ -4,6 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from src.provider.serializers import ProviderSerializer, CarSerializer, SaleSerializer
 from src.provider.models import Provider, Car, ProviderSale
+from src.provider.services import buy_car_provider
 
 
 class ProviderView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
@@ -24,6 +25,7 @@ class CarView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
     queryset = Car.objects.all()
 
     def get(self, request, *args, **kwargs):
+        buy_car_provider.delay()
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
