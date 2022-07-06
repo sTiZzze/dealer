@@ -19,13 +19,13 @@ class ProviderView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSe
         return self.create(request, *args, **kwargs)
 
 
+
 class CarView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
 
     serializer_class = CarSerializer
     queryset = Car.objects.all()
 
     def get(self, request, *args, **kwargs):
-        buy_car_provider.delay()
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

@@ -1,21 +1,21 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
-from config.celery import app
+from src.provider.models import Car, Provider, EditorCar
+
 
 @shared_task
 def buy_car_provider():
-    from src.provider.models import Car, Provider, EditorCar
     cars = Car.objects.all()
-    for car in cars:
-        car.is_active = True
-        car.save()
-
-
-                #EditorCar.car = car
-                #EditorCar.provider = provider
-                #Car.is_active = True
-                #EditorCar.save()
-                #Car.save()
+    providers = Provider.objects.all()
+    for provider in providers:
+        for car in cars:
+            if provider.balance > car.price:
+                provider.balance -= car.price
+                EditorCar.objects.create(provider=provider, car=car)
+                provider.save()
+                car.save()
+            else:
+                continue
     return True
 
 

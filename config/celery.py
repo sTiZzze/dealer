@@ -20,7 +20,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'add-every-30-seconds': {
         'task': 'src.core.tasks.buy_car',
-        'schedule': 30.0
+        'schedule': 1800.0
     },
 }
 app.conf.timezone = 'UTC'

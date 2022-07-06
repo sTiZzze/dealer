@@ -33,6 +33,7 @@ services:
       - celery
       - redis
       - celery-beat
+      - flower
   celery:
     container_name: dealer-celery
     build: .
@@ -55,3 +56,10 @@ services:
       - REDIS_HOST=redis
     depends_on:
       - redis
+  flower:
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - FLOWER_PORT=8888
+    ports:
+      - 8888:8888
