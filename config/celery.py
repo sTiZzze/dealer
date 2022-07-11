@@ -18,9 +18,13 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    'add-every-30-seconds': {
+    'add_provider_car': {
         'task': 'src.core.tasks.create_car',
-        'schedule': 300.0
+        'schedule': 600.0
+    },
+    'add-dealer_car': {
+        'task': 'src.core.tasks.create_dealer',
+        'schedule': 30.0
     },
 }
 app.conf.timezone = 'UTC'

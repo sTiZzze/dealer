@@ -19,12 +19,12 @@ def buy_car_provider():
 def create_random_car():
     model = random.choice(['BMW', 'Audi', 'Lada', 'Mercedes'])
     color = random.choice(['RED', 'BLUE', 'GREEN', 'WHITE', 'BLACK', 'SILVER'])
-    price = random.randint(1000, 10000)
+    price = random.randint(1000, 100000)
     engine = random.randint(1, 10)
-    mileage = random.randint(1, 10)
+    mileage = random.randint(1, 100000)
     is_factory = random.choice(['True', 'False'])
     year = random.randint(1990, 2022)
-    amount_of_owners = random.randint(1,8)
+    amount_of_owners = random.randint(1, 8)
     vin_number = random.randint(1000000, 9999999)
 
     Car.objects.create(
