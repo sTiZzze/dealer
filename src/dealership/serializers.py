@@ -15,7 +15,7 @@ class DealershipSerializer(ModelSerializer):
 
     class Meta:
         model = Dealership
-        fields = ('name', 'location', 'description', 'balance', 'cars', )
+        fields = ('name', 'location', 'description', 'balance', 'cars', 'query', )
 
 
 class ProviderCarsSerializer(ModelSerializer):

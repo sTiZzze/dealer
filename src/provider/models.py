@@ -29,7 +29,7 @@ class Car(CreatedAt, UpdatedAt, Delete):
     )
 
     def __str__(self):
-        return self.name
+        return self.model
 
 
 class Provider(CreatedAt, UpdatedAt, Delete):

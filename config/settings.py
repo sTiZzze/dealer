@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'src.customer.apps.CustomerConfig',
     'rest_framework',
     'djmoney',
-
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -146,6 +149,7 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -158,4 +162,9 @@ SIMPLE_JWT = {
 CELERY_TIMEZONE = "UTC"
 CELERY_TASK_TIME_LIMIT = 15  # seconds
 CELERY_BROKER_URL = "redis://%s:%s" % (env('REDIS_HOST'), env('REDIS_PORT'))
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = "redis://%s:%s" % (env('REDIS_HOST'), env('REDIS_PORT'))
+CELERY_ACCEPT_CONTENT = ('application/json', )
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ('src.core.tasks',)
