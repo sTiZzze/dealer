@@ -20,6 +20,7 @@ class Dealership(CreatedAt, UpdatedAt, Delete):
     description = models.TextField(blank=True)
     balance = MoneyField(decimal_places=2, default_currency='USD', max_digits=100)
     cars = models.ManyToManyField(Car, through='ProviderCars')
+    query = models.JSONField(blank=True)
 
     def __str__(self):
         return self.name
