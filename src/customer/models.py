@@ -23,6 +23,7 @@ class Customer(CreatedAt, UpdatedAt, Delete):
             MaxValueValidator(100),
             MinValueValidator(14)
         ])
+    query = models.JSONField(blank=True)
     location = models.ForeignKey(Location,  on_delete=models.CASCADE, related_name='location')
     balance = MoneyField(decimal_places=2, default_currency='USD', max_digits=10)
     phone = models.CharField(

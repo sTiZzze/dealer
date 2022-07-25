@@ -24,7 +24,11 @@ app.conf.beat_schedule = {
     },
     'add-dealer_car': {
         'task': 'src.core.tasks.create_dealer',
-        'schedule': 30.0
+        'schedule': 600.0
+    },
+    'add-customer_car': {
+        'task': 'src.core.tasks.create_customer',
+        'schedule': 10.0
     },
 }
 app.conf.timezone = 'UTC'

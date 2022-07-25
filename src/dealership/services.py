@@ -13,18 +13,16 @@ def dealer_buy_car():
     for dealership in Dealerships:
         query = dealership.query
         try:
-            model = query.get('model')
-            price = query.get('price')
-            engine = query.get('engine')
-            color = query.get('color')
-            cars = Car.objects.filter(Q(model=model) &
-                                      Q(price__lte=price) &
-                                      Q(engine_volume__lte=engine) &
-                                      Q(color=color))
+            cars = Car.objects.filter(Q(model=query.get('model')) &
+                                      Q(price__lte=query.get('price')) &
+                                      Q(engine_volume__lte=query.get('engine')) &
+                                      Q(color=query.get('color')))
             car = cars.exclude(buy_car__provider__isnull=True).order_by('price').first()
             editor = EditorCar.objects.filter(car=car).first()
             ProviderCars.objects.create(dealership=dealership, provider=editor.provider, cars=editor.car)
             dealership.balance -= car.price
+            editor.provider.balance += car.price
             dealership.save()
+            editor.provider.save()
         except:
             continue
