@@ -1,12 +1,6 @@
 import pytest
-from src.dealership.models import Location
+
 from src.provider.models import Car, Provider
-
-
-@pytest.mark.django_db
-def test_location_create():
-    Location.objects.create(country='Bel', city='Brest', street='Gs', home=18)
-    assert Location.objects.count() == 1
 
 
 @pytest.mark.django_db

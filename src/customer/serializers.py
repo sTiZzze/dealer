@@ -7,7 +7,7 @@ class CustomerSerializer(ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ('__all__')
+        fields = ('name', 'location', 'phone', 'balance', 'query', 'age', 'cars',)
 
 
 class LocationSerializer(ModelSerializer):
@@ -15,3 +15,5 @@ class LocationSerializer(ModelSerializer):
     class Meta:
         model = Location
         fields = ('__all__')
+
+
