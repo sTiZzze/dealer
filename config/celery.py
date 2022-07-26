@@ -20,15 +20,15 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'add_provider_car': {
         'task': 'src.core.tasks.create_car',
-        'schedule': 600.0
+        'schedule': 6000.0
     },
     'add-dealer_car': {
         'task': 'src.core.tasks.create_dealer',
-        'schedule': 600.0
+        'schedule': 6000.0
     },
     'add-customer_car': {
         'task': 'src.core.tasks.create_customer',
-        'schedule': 10.0
+        'schedule': 6000.0
     },
 }
 app.conf.timezone = 'UTC'
