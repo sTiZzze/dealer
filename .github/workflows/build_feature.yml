@@ -27,18 +27,5 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 .
-    - name: Generate Report
-      env:
-        SECRET_KEY: ${{ secrets.SecretKey }}
-        POSTGRES_DB: ${{ secrets.SecretKey }}
-        POSTGRES_PASSWORD: ${{ secrets.SecretKey }}
-        POSTGRES_USER: ${{ secrets.SecretKey }}
-        POSTGRES_HOST: ${{ secrets.SecretKey }}
-        POSTGRES_PORT: ${{ secrets.SecretKey }}
-        REDIS_HOST: ${{ secrets.SecretKey }}
-        REDIS_PORT: ${{ secrets.SecretKey }}
-      run: |
-        pip install coverage
-        coverage run -m pytest
     
     
