@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from django.db.models import Q
 from celery import shared_task
 
-from src.provider.models import Car, Provider, EditorCar
+from src.provider.models import Car, EditorCar
 from src.dealership.models import Dealership, ProviderCars
 
 
@@ -24,5 +24,5 @@ def dealer_buy_car():
             editor.provider.balance += car.price
             dealership.save()
             editor.provider.save()
-        except:
+        except Car.DoesNotExist:
             continue

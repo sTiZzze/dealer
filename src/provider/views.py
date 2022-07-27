@@ -44,6 +44,3 @@ class SaleView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSet):
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
-
-
-

@@ -29,7 +29,7 @@ class Customer(CreatedAt, UpdatedAt, Delete):
     phone = models.CharField(
         max_length=40,
         validators=(
-            RegexValidator(regex="^(\+375|80)(17|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$"),
+            RegexValidator(regex="^(\+375|80)(17|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$"), # noqa W605
         )
     )
     cars = models.ManyToManyField(Car, through='Buy')
@@ -45,5 +45,3 @@ class Buy(CreatedAt, UpdatedAt, Delete):
                             related_name='cars',
                             null=True, blank=True)
     dealership = models.ForeignKey(Dealership, on_delete=models.CASCADE, related_name='car_dealership')
-
-

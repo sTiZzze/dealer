@@ -1,4 +1,3 @@
-from django.http import HttpResponseForbidden
 from rest_framework.permissions import BasePermission
 
 
@@ -21,4 +20,3 @@ class CustomerPermission(BasePermission):
     def has_permission(self, request, view):
         if request.user.groups.filter(name="customer").exists() or request.user.is_staff:
             return True
-

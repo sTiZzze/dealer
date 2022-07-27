@@ -4,7 +4,7 @@ from django.urls import path, include
 from src.dealership.views import LocationView, DealershipView
 
 router = routers.DefaultRouter()
-router.register('list', DealershipView, "providers")
+router.register('list', DealershipView, "dealerships")
 router.register('locations', LocationView, "locations")
 
 urlpatterns = [

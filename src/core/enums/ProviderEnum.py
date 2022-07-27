@@ -1,7 +1,5 @@
 from enum import Enum
 
-from django.db.models import TextChoices
-
 
 class Color(Enum):
     RED = "RED"

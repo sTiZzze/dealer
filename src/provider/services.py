@@ -45,4 +45,3 @@ try:
     logger = get_task_logger(__name__)
 except ImportError:
     logger = buy_car_provider.get_logger()
-
