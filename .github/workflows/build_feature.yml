@@ -33,6 +33,7 @@ jobs:
     - name: Test with pytest
       env:
         SECRET_KEY: ${{ secrets.SecretKey }}
+        POSTGRES_DB: ${{ secrets.SecretKey }}
       run: pytest
     - name: Generate Report
       run: |
