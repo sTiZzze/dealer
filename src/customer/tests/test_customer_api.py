@@ -40,4 +40,3 @@ class TestCustomer(APITestCase):
         response = self.client.post(url, data=data, status='json')
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data == data
-

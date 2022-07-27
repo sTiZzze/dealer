@@ -32,4 +32,3 @@ class TestCars(APITestCase):
                 'amount_of_owners': 2, 'year': 2001}
         response = self.client.post(url, data=data, status='json')
         assert response.status_code == status.HTTP_201_CREATED
-

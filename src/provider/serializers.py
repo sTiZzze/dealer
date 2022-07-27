@@ -29,5 +29,3 @@ class SaleSerializer(ModelSerializer):
     class Meta:
         model = ProviderSale
         fields = ('__all__')
-
-

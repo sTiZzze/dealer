@@ -24,7 +24,7 @@ class Car(CreatedAt, UpdatedAt, Delete):
         max_length=17,
         unique=True,
         validators=[
-            RegexValidator(regex="^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$")
+            RegexValidator(regex="^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$") # noqa W605
         ]
     )
 
@@ -58,9 +58,3 @@ class ProviderSale(CreatedAt, UpdatedAt, Delete):
             MinValueValidator(0)
         ])
     end_date = models.DateField()
-
-
-
-
-
-

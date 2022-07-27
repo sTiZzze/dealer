@@ -31,4 +31,3 @@ class CustomerView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericViewSe
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
-

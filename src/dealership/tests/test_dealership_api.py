@@ -17,7 +17,7 @@ def test_data():
 
 
 @pytest.mark.django_db
-class TestCars(APITestCase):
+class TestDealership(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_superuser(username='testuser', password='12345')
@@ -26,14 +26,14 @@ class TestCars(APITestCase):
         self.client.login(username='testuser', password='12345')
 
     @pytest.mark.usefixtures()
-    def test_get_cars_list(self):
+    def test_get_dealership_list(self):
         """GET запрос к списку машин."""
         url = reverse('dealerships-list')
         response = self.client.get(url)
         assert response.status_code == status.HTTP_200_OK
 
     @pytest.mark.usefixtures('test_data')
-    def test_post_cars_list(self):
+    def test_post_dealership_list(self):
         """POST запрос к списку машин."""
         url = reverse('dealerships-list')
         data = DealershipSerializer(Dealership.objects.all().first()).data
@@ -42,4 +42,3 @@ class TestCars(APITestCase):
         print(response.data)
         print(data)
         assert response.data == data
-

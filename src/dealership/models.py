@@ -47,4 +47,3 @@ class DealershipSale(CreatedAt, UpdatedAt, Delete):
             MinValueValidator(0)
         ])
     end_date = models.DateField(blank=True)
-

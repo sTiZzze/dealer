@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from django.db.models import Q
 from celery import shared_task
 
-from src.dealership.models import Dealership, ProviderCars
+from src.dealership.models import ProviderCars
 from src.customer.models import Customer, Buy
 
 

@@ -1,4 +1,3 @@
-from pathlib import Path
 import os
 from pathlib import Path
 
@@ -58,8 +57,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'config']
-        ,
+        'DIRS': [BASE_DIR / 'config'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -20,8 +20,3 @@ def test_customer_create():
     location = Location.objects.all().first()
     Customer.objects.create(name='Test', location=location, balance=2000, query='gi', phone='+375333905555', age=15)
     assert Customer.objects.count() == 1
-
-
-
-
-

@@ -15,13 +15,8 @@ def test_location_create():
 
 
 @pytest.mark.django_db
-def test_dealership_create():
+def test_locations_create():
     create_location()
     location = Location.objects.all().first()
     Dealership.objects.create(name='Test', location=location, balance=2000, query='gi')
     assert Dealership.objects.count() == 1
-
-
-
-
-

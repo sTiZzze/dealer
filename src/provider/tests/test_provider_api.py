@@ -24,18 +24,17 @@ class TestCars(APITestCase):
         self.client.login(username='testuser', password='12345')
 
     @pytest.mark.usefixtures()
-    def test_get_cars_list(self):
+    def test_get_providers_list(self):
         """GET запрос к списку машин."""
         url = reverse('providers-list')
         response = self.client.get(url)
         assert response.status_code == status.HTTP_200_OK
 
     @pytest.mark.usefixtures('test_data')
-    def test_post_cars_list(self):
+    def test_post_providers_list(self):
         """POST запрос к списку машин."""
         url = reverse('providers-list')
         data = ProviderSerializer(Provider.objects.all().first()).data
         response = self.client.post(url, data=data, status='json')
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data == data
-
