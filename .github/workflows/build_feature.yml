@@ -27,6 +27,8 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 .
+    - name: Run migrations
+      run: python manage.py migrate
     - name: Test with pytest
       env:
         SECRET_KEY: ${{ secrets.SecretKey }}
@@ -38,7 +40,6 @@ jobs:
         REDIS_HOST: ${{ secrets.SecretKey }}
         REDIS_PORT: ${{ secrets.SecretKey }}
       run: |
-        python manage.py migrate
         python -m pytest
     - name: Generate Report
       run: |
