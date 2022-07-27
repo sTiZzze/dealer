@@ -29,5 +29,12 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         flake8 .
     - name: Test with pytest
-      run: |
-        coverage run -m pytest src
+      working-directory: ./app
+      run: pytest -vv
+    - name: Checkout action
+      uses: actions/checkout@v2
+    - name: Django Coverage action
+      uses: actions/python-django-coverage-gitHub-action@0.9
+      with:
+        django-app: 'sample_app'
+        minimum-coverage: '86'
