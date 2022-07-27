@@ -37,7 +37,8 @@ jobs:
         POSTGRES_PORT: ${{ secrets.SecretKey }}
         REDIS_HOST: ${{ secrets.SecretKey }}
         REDIS_PORT: ${{ secrets.SecretKey }}
-      run: pytest .
+      run: |
+        pytest .
     - name: Generate Report
       run: |
         pip install coverage
