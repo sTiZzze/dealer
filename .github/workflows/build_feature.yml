@@ -38,6 +38,7 @@ jobs:
         REDIS_HOST: ${{ secrets.SecretKey }}
         REDIS_PORT: ${{ secrets.SecretKey }}
       run: |
+        python manage.py migrate
         python -m pytest
     - name: Generate Report
       run: |
