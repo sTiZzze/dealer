@@ -36,6 +36,8 @@ jobs:
         POSTGRES_DB: ${{ secrets.SecretKey }}
         POSTGRES_PASSWORD: ${{ secrets.SecretKey }}
         POSTGRES_USER: ${{ secrets.SecretKey }}
+        POSTGRES_HOST: ${{ secrets.SecretKey }}
+        POSTGRES_PORT: ${{ secrets.SecretKey }}
       run: pytest
     - name: Generate Report
       run: |
