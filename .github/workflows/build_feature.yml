@@ -34,6 +34,8 @@ jobs:
       env:
         SECRET_KEY: ${{ secrets.SecretKey }}
         POSTGRES_DB: ${{ secrets.SecretKey }}
+        POSTGRES_PASSWORD: ${{ secrets.SecretKey }}
+        POSTGRES_USER: ${{ secrets.SecretKey }}
       run: pytest
     - name: Generate Report
       run: |
