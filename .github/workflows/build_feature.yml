@@ -38,6 +38,8 @@ jobs:
         POSTGRES_USER: ${{ secrets.SecretKey }}
         POSTGRES_HOST: ${{ secrets.SecretKey }}
         POSTGRES_PORT: ${{ secrets.SecretKey }}
+        REDIS_HOST: ${{ secrets.SecretKey }}
+        REDIS_PORT: ${{ secrets.SecretKey }}
       run: pytest
     - name: Generate Report
       run: |
