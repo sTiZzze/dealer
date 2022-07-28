@@ -21,9 +21,11 @@ services:
   app:
     container_name: dealer-app
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: |
+      gunicorn --workers=2 --bind=0.0.0.0:8000 config.wsgi:application
     volumes:
       - .:/app
+      - ./config/staticfiles
     ports:
       - "8000:8000"
     environment:
@@ -34,6 +36,16 @@ services:
       - redis
       - celery-beat
       - flower
+  nginx:
+    image: nginx:1.17
+    container_name: ngx
+    ports:
+      - "87:87"
+    volumes:
+      - ./config/staticfiles
+      - ./nginx.conf
+    depends_on:
+      - app
   celery:
     container_name: dealer-celery
     build: .
